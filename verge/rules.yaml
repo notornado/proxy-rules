@@ -1,0 +1,11 @@
+# Profile Enhancement Rules Template for Clash Verge
+# 三条自定义规则集，顺序即优先级，放在订阅自带规则最前面
+
+prepend:
+  - RULE-SET,my-direct,DIRECT
+  - RULE-SET,my-japan,🗾Japan
+  - RULE-SET,my-proxy,Proxies
+
+append: []
+
+delete: []

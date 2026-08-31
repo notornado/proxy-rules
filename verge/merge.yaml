@@ -1,0 +1,26 @@
+# Profile Enhancement Merge Template for Clash Verge
+# 只放 rule-providers（普通顶层键，Merge 类型能正确合并）
+# RULE-SET 规则在 Rules 增强里，🗾Japan 组在 Groups 增强里
+
+rule-providers:
+  my-direct:
+    type: http
+    behavior: classical
+    format: text
+    url: "https://raw.githubusercontent.com/notornado/proxy-rules/main/my-direct.list"
+    path: ./ruleset/my-direct.list
+    interval: 3600
+  my-japan:
+    type: http
+    behavior: classical
+    format: text
+    url: "https://raw.githubusercontent.com/notornado/proxy-rules/main/my-japan.list"
+    path: ./ruleset/my-japan.list
+    interval: 3600
+  my-proxy:
+    type: http
+    behavior: classical
+    format: text
+    url: "https://raw.githubusercontent.com/notornado/proxy-rules/main/my-proxy.list"
+    path: ./ruleset/my-proxy.list
+    interval: 3600

@@ -1,0 +1,13 @@
+# Profile Enhancement Groups Template for Clash Verge
+# 订阅里没有日本节点组，从全部节点按名字筛一个出来
+
+prepend:
+  - name: 🗾Japan
+    type: select
+    include-all: true
+    filter: "(?i)japan|日本|🇯🇵"
+    exclude-filter: "(?i)(Expire|Traffic Reset|G \\| |剩余|官网|过期|到期)"
+
+append: []
+
+delete: []
