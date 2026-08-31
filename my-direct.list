@@ -1,0 +1,46 @@
+# my-direct.list —— 强制直连的匹配条件
+# 只写匹配条件，不带策略。Clash/mihomo classical rule-provider 与 Shadowrocket 通用。
+# 引用方：Mac/PC 的 Clash Verge、NAS 上的 mihomo、iPhone/iPad 的 Shadowrocket
+# 更新时间：2026-08-31
+
+########## 局域网 / 私有地址 ##########
+IP-CIDR,127.0.0.0/8,no-resolve
+IP-CIDR,10.0.0.0/8,no-resolve
+IP-CIDR,172.16.0.0/12,no-resolve
+IP-CIDR,192.168.0.0/16,no-resolve
+IP-CIDR,100.64.0.0/10,no-resolve
+IP-CIDR,169.254.0.0/16,no-resolve
+IP-CIDR,224.0.0.0/4,no-resolve
+IP-CIDR6,::1/128,no-resolve
+IP-CIDR6,fc00::/7,no-resolve
+IP-CIDR6,fe80::/10,no-resolve
+DOMAIN-SUFFIX,local
+DOMAIN-SUFFIX,lan
+DOMAIN-SUFFIX,localdomain
+DOMAIN-SUFFIX,home.arpa
+
+########## 极空间 NAS 云服务 / 远程访问 ##########
+# 实测自 NAS：/zspace 下各服务引用的域名 + frpc 中转
+DOMAIN-SUFFIX,zenithspace.net
+DOMAIN-SUFFIX,zspace.cn
+DOMAIN-SUFFIX,g792.cn
+IP-CIDR,106.75.11.128/32,no-resolve
+
+########## 特斯拉 API（TeslaMate 使用，中国区）##########
+# 实测自 teslamate 日志：auth.tesla.cn / owner-api.vn.cloud.tesla.cn
+DOMAIN-SUFFIX,tesla.cn
+DOMAIN-SUFFIX,teslamotors.cn
+
+########## Cloudflare Tunnel（cloudflared 连边缘节点）##########
+DOMAIN-SUFFIX,argotunnel.com
+DOMAIN-SUFFIX,cftunnel.com
+DOMAIN-SUFFIX,cfargotunnel.com
+DOMAIN-SUFFIX,trycloudflare.com
+# 实测自 cloudflared 日志的边缘 IP 段（lax09 / lax12 / sjc08）
+IP-CIDR,198.41.192.0/24,no-resolve
+IP-CIDR,198.41.200.0/24,no-resolve
+
+########## Steam 下载走直连（走代理会限速/浪费流量）##########
+DOMAIN-SUFFIX,steamcontent.com
+DOMAIN-SUFFIX,steamserver.net
+DOMAIN,content-origin.steampowered.com

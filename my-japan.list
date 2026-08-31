@@ -1,0 +1,20 @@
+# my-japan.list —— 走日本节点组的匹配条件
+# 来源：PC 上 Clash Verge 里原有的 prepend 规则（原策略为 🗾Japan）
+# 只写匹配条件，不带策略。策略在各客户端的 RULE-SET 行里指定。
+# 更新时间：2026-08-31
+
+DOMAIN-SUFFIX,pixiv.net
+DOMAIN-SUFFIX,pximg.net
+DOMAIN-SUFFIX,fanbox.cc
+DOMAIN-SUFFIX,fantia.jp
+DOMAIN-SUFFIX,dlsite.com
+DOMAIN-SUFFIX,dmm.com
+DOMAIN-SUFFIX,dmm.co.jp
+DOMAIN-SUFFIX,getchu.com
+DOMAIN-SUFFIX,skeb.jp
+DOMAIN-SUFFIX,ci-en.jp
+DOMAIN-SUFFIX,ci-en.net
+DOMAIN-SUFFIX,toranoana.jp
+DOMAIN-SUFFIX,melonbooks.co.jp
+DOMAIN-SUFFIX,booth.pm
+DOMAIN-SUFFIX,nicovideo.jp

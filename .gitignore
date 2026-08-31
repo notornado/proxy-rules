@@ -1,0 +1,4 @@
+# 机场订阅 URL 是凭据，任何包含它的文件都不许进仓库
+config.yaml
+*.bak.*
+.DS_Store

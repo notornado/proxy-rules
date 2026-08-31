@@ -1,0 +1,9 @@
+# my-proxy.list —— 走主代理组的匹配条件
+# 只写匹配条件，不带策略。策略在各客户端的 RULE-SET 行里指定。
+# 更新时间：2026-08-31
+
+########## Steam 商店 / 社区 / 静态资源（下载在 my-direct.list 里直连）##########
+DOMAIN-SUFFIX,steampowered.com
+DOMAIN-SUFFIX,steamcommunity.com
+DOMAIN-SUFFIX,steamstatic.com
+DOMAIN-SUFFIX,steamcdn-a.akamaihd.net
