@@ -1,0 +1,63 @@
+# Stash 覆写配置（Override）
+#
+# 用法：Stash → 配置 → 选中你的 Nexitally 配置 → 覆写 → 添加 → 粘贴本文件内容
+#
+# Stash 覆写的合并规则：**同名数组会插入到原配置数组的最前面**。
+# 所以下面 rules 里那四条会自动排在订阅自带的 7544 条规则之前，不需要额外指定顺序。
+#
+# 更新时间：2026-09-01
+
+# ============================================================
+# 订阅里没有日本节点组，从全部节点里按名字筛一个出来。
+# 机场那 3 个用来显示流量/到期的假节点（"30.46 G | 500.00 G" 之类）
+# 名字里不含 🇯🇵，天然不会被选进来，所以不需要额外的排除规则。
+# ============================================================
+proxy-groups:
+  - name: 🗾Japan
+    type: select
+    include-all: true
+    filter: "🇯🇵"
+
+# ============================================================
+# 规则集 —— 与 Mac/PC 的 Verge、NAS 的 mihomo 用的是同样的 URL
+# ============================================================
+rule-providers:
+  my-direct:
+    type: http
+    behavior: classical
+    format: text
+    url: "https://raw.githubusercontent.com/notornado/proxy-rules/main/my-direct.list"
+    path: ./ruleset/my-direct.list
+    interval: 3600
+  my-japan:
+    type: http
+    behavior: classical
+    format: text
+    url: "https://raw.githubusercontent.com/notornado/proxy-rules/main/my-japan.list"
+    path: ./ruleset/my-japan.list
+    interval: 3600
+  my-gemini:
+    type: http
+    behavior: classical
+    format: text
+    url: "https://raw.githubusercontent.com/notornado/proxy-rules/main/my-gemini.list"
+    path: ./ruleset/my-gemini.list
+    interval: 3600
+  my-proxy:
+    type: http
+    behavior: classical
+    format: text
+    url: "https://raw.githubusercontent.com/notornado/proxy-rules/main/my-proxy.list"
+    path: ./ruleset/my-proxy.list
+    interval: 3600
+
+# ============================================================
+# 顺序即优先级。这四条会被插到订阅规则最前面。
+# Gemini 从订阅默认的 AI 分组挪到 Google 分组
+# （AI 分组用的是带 DIP 的固定 IP 节点，Gemini 在上面经常打不开）
+# ============================================================
+rules:
+  - RULE-SET,my-direct,DIRECT
+  - RULE-SET,my-japan,🗾Japan
+  - RULE-SET,my-gemini,Google
+  - RULE-SET,my-proxy,Proxies
