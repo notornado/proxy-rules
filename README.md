@@ -27,7 +27,9 @@ https://raw.githubusercontent.com/notornado/proxy-rules/main/my-proxy.list
 
 ### Clash Verge Rev（Mac / PC）
 
-新建一个 Merge 配置，内容见 `clash-verge-merge.yaml`，关联到 Nexitally 订阅并启用，然后手动更新一次规则集。
+见 [`verge/README.md`](verge/)。这个版本的 Verge 把增强配置拆成 Merge / Rules / Groups 三种类型，
+语法各不相同：`rule-providers` 放 Merge，三条 `RULE-SET` 放 Rules，`🗾Japan` 组放 Groups。
+**在 Merge 里写 `prepend-rules` 不生效**，坑的细节记在那个 README 里。
 
 ### mihomo（NAS 旁路由）
 
