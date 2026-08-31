@@ -24,3 +24,10 @@ rule-providers:
     url: "https://raw.githubusercontent.com/notornado/proxy-rules/main/my-proxy.list"
     path: ./ruleset/my-proxy.list
     interval: 3600
+  my-gemini:
+    type: http
+    behavior: classical
+    format: text
+    url: "https://raw.githubusercontent.com/notornado/proxy-rules/main/my-gemini.list"
+    path: ./ruleset/my-gemini.list
+    interval: 3600

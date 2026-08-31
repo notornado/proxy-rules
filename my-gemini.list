@@ -1,0 +1,19 @@
+# my-gemini.list —— 走 Google 分组的匹配条件
+#
+# 为什么单独拆出来：Nexitally 订阅默认把 Gemini 归在 AI 分组，
+# 而 AI 分组选的是带 DIP 的固定 IP 节点（给 ChatGPT 用的）。
+# Gemini 在那个 IP 上经常打不开，所以把它挪到 Google 分组。
+# ChatGPT 等其余 AI 服务仍留在 AI 分组，不受影响。
+#
+# 只写匹配条件，不带策略。策略在各客户端的 RULE-SET 行里指定为 Google 分组。
+# 注意：引用这份文件的客户端必须存在名为 Google 的策略组。
+# 更新时间：2026-09-01
+
+DOMAIN-SUFFIX,gemini.google.com
+DOMAIN-SUFFIX,aistudio.google.com
+DOMAIN-SUFFIX,bard.google.com
+DOMAIN-SUFFIX,deepmind.google
+DOMAIN-SUFFIX,deepmind.com
+DOMAIN,generativelanguage.googleapis.com
+DOMAIN,makersuite.google.com
+DOMAIN,alkalimakersuite-pa.clients6.google.com
