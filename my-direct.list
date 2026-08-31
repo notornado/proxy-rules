@@ -40,6 +40,10 @@ DOMAIN-SUFFIX,trycloudflare.com
 IP-CIDR,198.41.192.0/24,no-resolve
 IP-CIDR,198.41.200.0/24,no-resolve
 
+########## NTP 校时 ##########
+# UDP 123 走代理基本不通，会导致 NAS 时间同步失败（实测踩到）
+DST-PORT,123
+
 ########## Steam 下载走直连（走代理会限速/浪费流量）##########
 DOMAIN-SUFFIX,steamcontent.com
 DOMAIN-SUFFIX,steamserver.net
