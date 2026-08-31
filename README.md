@@ -18,9 +18,9 @@
 ## Raw URL
 
 ```
-https://raw.githubusercontent.com/<GH_USER>/proxy-rules/main/my-direct.list
-https://raw.githubusercontent.com/<GH_USER>/proxy-rules/main/my-japan.list
-https://raw.githubusercontent.com/<GH_USER>/proxy-rules/main/my-proxy.list
+https://raw.githubusercontent.com/notornado/proxy-rules/main/my-direct.list
+https://raw.githubusercontent.com/notornado/proxy-rules/main/my-japan.list
+https://raw.githubusercontent.com/notornado/proxy-rules/main/my-proxy.list
 ```
 
 ## 各客户端怎么引用
