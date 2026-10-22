@@ -1,11 +1,35 @@
+name: proxy-rules
+desc: 统一规则集 + 固定 DNS（不依赖机场私有 DoH）
+
 # Stash 覆写配置（Override）
 #
-# 用法：Stash → 配置 → 选中你的 Nexitally 配置 → 覆写 → 添加 → 粘贴本文件内容
+# 用法：在 iPhone 上用 Safari 打开下面的链接，Stash 会弹出安装覆写：
+#   https://link.stash.ws/install-override/raw.githubusercontent.com/notornado/proxy-rules/main/stash/override.stoverride
+# 装好后在覆写列表里启用它；以前手动粘贴的那份覆写删掉，避免重复。
 #
-# Stash 覆写的合并规则：**同名数组会插入到原配置数组的最前面**。
+# Stash 覆写的合并规则：**同名数组会插入到原配置数组的最前面**，
+# 加了 `#!replace` 的键则整个替换原配置的值。
 # 所以下面 rules 里那四条会自动排在订阅自带的 7544 条规则之前，不需要额外指定顺序。
 #
-# 更新时间：2026-09-01
+# 更新时间：2026-10-22
+
+# ============================================================
+# DNS：替换订阅自带的机场私有 DoH（iqsjp.com / destitute2725.com 等）
+# 2026-10-22 踩坑：一次拉订阅拿到的 DoH 地址少了账号 ID，服务器回 404，
+# Stash 解析不出任何域名（包括节点入口），所有节点超时、直连网站也打不开。
+# 改成公共 DNS 之后，订阅里的 DNS 写成什么样都不再影响上网。
+# 与 NAS 上 mihomo 用的是同一组服务器（阿里 223.5.5.5 / 腾讯）。
+# ============================================================
+dns:
+  default-nameserver: #!replace
+    - 223.5.5.5
+    - 119.29.29.29
+  nameserver: #!replace
+    - https://223.5.5.5/dns-query
+    - https://1.12.12.12/dns-query
+  proxy-server-nameserver: #!replace
+    - 223.5.5.5
+    - 119.29.29.29
 
 # ============================================================
 # 订阅里没有日本节点组，从全部节点里按名字筛一个出来。

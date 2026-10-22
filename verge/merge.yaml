@@ -1,6 +1,20 @@
 # Profile Enhancement Merge Template for Clash Verge
-# 只放 rule-providers（普通顶层键，Merge 类型能正确合并）
+# 只放普通顶层键（rule-providers、dns），Merge 类型能正确合并
 # RULE-SET 规则在 Rules 增强里，🗾Japan 组在 Groups 增强里
+
+# DNS：替换订阅自带的机场私有 DoH，与 NAS 上 mihomo、手机 Stash 用同一组服务器。
+# 订阅里的 DoH 地址一旦缺了账号 ID 就会 404，所有域名（包括节点入口）都解析不出来。
+# 只覆盖这三项，listen / fake-ip-filter 等其余 DNS 设置沿用订阅的。
+dns:
+  default-nameserver:
+    - 223.5.5.5
+    - 119.29.29.29
+  nameserver:
+    - https://223.5.5.5/dns-query
+    - https://1.12.12.12/dns-query
+  proxy-server-nameserver:
+    - 223.5.5.5
+    - 119.29.29.29
 
 rule-providers:
   my-direct:

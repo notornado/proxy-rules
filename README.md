@@ -39,10 +39,38 @@ https://raw.githubusercontent.com/notornado/proxy-rules/main/my-proxy.list
 
 首次启动前把三个 `.list` 预先放到配置目录的 `ruleset/` 下，避免拉不到 GitHub 时启动失败。
 
+### Stash（iPhone）
+
+用 Safari 打开下面的链接安装覆写（规则集 + 固定 DNS 都在里面），然后在覆写列表里启用：
+
+```
+https://link.stash.ws/install-override/raw.githubusercontent.com/notornado/proxy-rules/main/stash/override.stoverride
+```
+
+改覆写只改 [`stash/override.stoverride`](stash/override.stoverride)，手机上在覆写列表里点更新即可。
+
 ### Shadowrocket（iPhone / iPad）
 
 配置 → 规则 → 添加规则集，各加三条，拖到规则列表最顶部，策略分别为
 `DIRECT` / 日本节点组 / 主代理组，然后手动更新一次规则集。
+
+## DNS：不用机场订阅自带的私有 DoH
+
+Nexitally 订阅自带一组私有 DoH（地址末尾带账号 ID），客户端解析**所有**域名都靠它，
+包括节点入口。2026-10-22 一次拉订阅拿到的 DoH 地址少了 ID，服务器回 404，
+结果所有节点超时、连直连网站也打不开。
+
+所以各客户端都把 DNS 固定成公共服务器，订阅里的 DNS 写成什么样都不影响上网：
+
+| 键 | 值 | 作用 |
+| --- | --- | --- |
+| `default-nameserver` | `223.5.5.5`、`119.29.29.29` | 解析其他 DNS 服务器自己的域名 |
+| `nameserver` | `https://223.5.5.5/dns-query`、`https://1.12.12.12/dns-query` | 解析直连流量的域名（DoH，防运营商劫持） |
+| `proxy-server-nameserver` | `223.5.5.5`、`119.29.29.29` | 解析节点入口域名 |
+
+- Verge：写在 [`verge/merge.yaml`](verge/merge.yaml)
+- Stash：写在 [`stash/override.stoverride`](stash/override.stoverride)（用 `#!replace` 整个替换）
+- NAS mihomo：`config.yaml` 本来就只从订阅取节点、DNS 是自己写的，用的是同一组服务器
 
 ## 约定
 

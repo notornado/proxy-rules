@@ -4,7 +4,7 @@
 
 | 类型 | 语法 | 放什么 |
 | --- | --- | --- |
-| Merge | 普通 YAML 顶层键，直接深合并 | `rule-providers`（三个规则集的下载地址） |
+| Merge | 普通 YAML 顶层键，直接深合并 | `rule-providers`（规则集的下载地址）、`dns`（固定公共 DNS） |
 | Rules | `prepend:` / `append:` / `delete:` | 三条 `RULE-SET` 规则 |
 | Groups | `prepend:` / `append:` / `delete:` | `🗾Japan` 策略组 |
 | Proxies | `prepend:` / `append:` / `delete:` | 本项目用不到 |
