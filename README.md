@@ -8,7 +8,7 @@
 | --- | --- | --- |
 | `my-direct.list` | 局域网、极空间 NAS 云服务、特斯拉 API（TeslaMate）、Cloudflare Tunnel、Steam 下载 | `DIRECT` |
 | `my-japan.list` | pixiv / DLsite / DMM / ニコニコ动画 等需要日本出口的站点 | 日本节点组（`🗾Japan`） |
-| `my-proxy.list` | Steam 商店 / 社区 / 静态资源；OneDrive 网页入口（DNS 污染） | 主代理组（`Proxies`） |
+| `my-proxy.list` | Steam 商店 / 社区 / 静态资源；OneDrive 网页入口（DNS 污染）；微软账户页 account.microsoft.com | 主代理组（`Proxies`） |
 
 格式为 Clash `classical` rule-provider：**每行只有匹配条件，不带策略**，同一份文件 Shadowrocket（Surge 语法）也能直接用。
 

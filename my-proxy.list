@@ -14,3 +14,9 @@ DOMAIN-SUFFIX,steamcdn-a.akamaihd.net
 # 其余 OneDrive 域名（api.onedrive.com、*.1drv.com、microsoftpersonalcontent.com、
 # storage.live.com 等）直连正常，仍按订阅的 Microsoft 组直连，省流量。
 DOMAIN-SUFFIX,onedrive.live.com
+
+########## 微软账户页（Akamai 节点直连不稳）##########
+# 实测 2026-10-26：account.microsoft.com 直连 TLS 握手偶发 17s，平时 1.1–1.9s；
+# 走代理 0.6–0.9s。同页面的 uhf.microsoft.com、*.onecdn.static.microsoft、
+# login.microsoftonline.com 直连正常，不加。
+DOMAIN-SUFFIX,account.microsoft.com
