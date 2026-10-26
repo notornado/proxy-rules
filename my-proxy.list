@@ -1,9 +1,16 @@
 # my-proxy.list —— 走主代理组的匹配条件
 # 只写匹配条件，不带策略。策略在各客户端的 RULE-SET 行里指定。
-# 更新时间：2026-08-31
+# 更新时间：2026-10-26
 
 ########## Steam 商店 / 社区 / 静态资源（下载在 my-direct.list 里直连）##########
 DOMAIN-SUFFIX,steampowered.com
 DOMAIN-SUFFIX,steamcommunity.com
 DOMAIN-SUFFIX,steamstatic.com
 DOMAIN-SUFFIX,steamcdn-a.akamaihd.net
+
+########## OneDrive 网页入口（国内 DNS 被污染，直连超时）##########
+# 实测 2026-10-26：223.5.5.5 把 onedrive.live.com / skyapi.onedrive.live.com
+# 解析成 Twitter 新加坡 IP，直连超时；走代理 ~300ms。
+# 其余 OneDrive 域名（api.onedrive.com、*.1drv.com、microsoftpersonalcontent.com、
+# storage.live.com 等）直连正常，仍按订阅的 Microsoft 组直连，省流量。
+DOMAIN-SUFFIX,onedrive.live.com
