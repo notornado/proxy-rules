@@ -41,7 +41,7 @@ https://raw.githubusercontent.com/notornado/proxy-rules/main/my-proxy.list
 
 ### Stash（iPhone）
 
-用 Safari 打开下面的链接安装覆写（规则集 + 固定 DNS 都在里面），然后在覆写列表里启用：
+用 Safari 打开下面的链接安装覆写（规则集 + 公共 DNS 都在里面），然后在覆写列表里启用：
 
 ```
 https://link.stash.ws/install-override/raw.githubusercontent.com/notornado/proxy-rules/main/stash/override.stoverride
@@ -54,23 +54,33 @@ https://link.stash.ws/install-override/raw.githubusercontent.com/notornado/proxy
 配置 → 规则 → 添加规则集，各加三条，拖到规则列表最顶部，策略分别为
 `DIRECT` / 日本节点组 / 主代理组，然后手动更新一次规则集。
 
-## DNS：不用机场订阅自带的私有 DoH
+## DNS：节点入口域名必须按订阅的方式解析
 
-Nexitally 订阅自带一组私有 DoH（地址末尾带账号 ID），客户端解析**所有**域名都靠它，
-包括节点入口。2026-10-22 一次拉订阅拿到的 DoH 地址少了 ID，服务器回 404，
-结果所有节点超时、连直连网站也打不开。
+Nexitally 订阅自带两样东西：一段 `hosts:`（节点入口域名 → 别名域名）和一组私有 DoH（地址末尾带账号 ID）。
+别名经私有 DoH 解析，得到的才是可用的入口 IP。同一个域名用公共 DNS（阿里、腾讯）查，
+返回的是另一组入口 IP，其中一部分连不上。
 
-所以各客户端都把 DNS 固定成公共服务器，订阅里的 DNS 写成什么样都不影响上网：
+经过：
 
-| 键 | 值 | 作用 |
-| --- | --- | --- |
-| `default-nameserver` | `223.5.5.5`、`119.29.29.29` | 解析其他 DNS 服务器自己的域名 |
-| `nameserver` | `https://223.5.5.5/dns-query`、`https://1.12.12.12/dns-query` | 解析直连流量的域名（DoH，防运营商劫持） |
-| `proxy-server-nameserver` | `223.5.5.5`、`119.29.29.29` | 解析节点入口域名 |
+- 2026-10-22：一次拉订阅拿到的 DoH 地址少了 ID，服务器回 404，所有域名解析失败。
+  为此把各客户端的 DNS 统一换成了公共 DNS。
+- 2026-11-16 ~ 17：凡是用公共 DNS 解析入口的设备，美国 / 日本 / 加拿大节点全部超时；
+  没换 DNS 的设备一直正常。Verge 上的 DNS 覆盖因此撤回。
 
-- Verge：写在 [`verge/merge.yaml`](verge/merge.yaml)
-- Stash：写在 [`stash/override.stoverride`](stash/override.stoverride)（用 `#!replace` 整个替换）
-- NAS mihomo：`config.yaml` 本来就只从订阅取节点、DNS 是自己写的，用的是同一组服务器
+现在各端的做法：
+
+| 客户端 | DNS |
+| --- | --- |
+| Verge（Mac / PC） | **不覆盖**，沿用订阅自带的 `dns:` 和 `hosts:`。[`verge/merge.yaml`](verge/merge.yaml) 里不要加 `dns:` |
+| NAS mihomo | 自己写的 DNS（阿里 / 腾讯），但节点入口域名单独处理：顶层加订阅的 `hosts:`，`proxy-server-nameserver` 指回自己的 DNS 监听，`nameserver-policy` 让入口域名后缀走私有 DoH。只写在 NAS 的 `config.yaml` 里 |
+| Stash（iPhone） | 仍用 [`stash/override.stoverride`](stash/override.stoverride) 里的公共 DNS（2026-11-17 实测节点正常，未改） |
+
+注意：
+
+- 私有 DoH 地址带账号 ID，和订阅 URL 一样是凭据，**不进本仓库**。
+- mihomo 内部解析节点域名时，`hosts:` 里"域名 → 域名"的别名不生效，只有经过 DNS 监听端口的查询才会展开别名。
+  所以 `proxy-server-nameserver` 要写成指向自己监听地址的 `udp://…`（订阅原配置就是这个写法）。
+- 排查"某几个地区的节点全挂"时，先看各端实际拨号的入口 IP 是否一致，不要先假设机场故障。
 
 ## 约定
 
