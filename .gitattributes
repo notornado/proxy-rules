@@ -1,0 +1,2 @@
+# Mac 和 Windows 共用同一个工作目录（放在 NAS 上），统一用 LF，避免换行符造成无意义的改动
+* text=auto eol=lf
