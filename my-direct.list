@@ -1,7 +1,7 @@
 # my-direct.list —— 强制直连的匹配条件
 # 只写匹配条件，不带策略。Clash/mihomo classical rule-provider 与 Shadowrocket 通用。
 # 引用方：Mac/PC 的 Clash Verge、NAS 上的 mihomo、iPhone/iPad 的 Shadowrocket
-# 更新时间：2026-08-31
+# 更新时间：2026-11-19
 
 ########## 局域网 / 私有地址 ##########
 IP-CIDR,127.0.0.0/8,no-resolve
@@ -48,3 +48,10 @@ DST-PORT,123
 DOMAIN-SUFFIX,steamcontent.com
 DOMAIN-SUFFIX,steamserver.net
 DOMAIN,content-origin.steampowered.com
+
+########## 游戏机下载走直连（PS5 / Switch 2 接旁路由后，2026-11-19）##########
+# 商店、登录仍按订阅规则走代理；只有游戏本体 / 补丁的下载 CDN 直连
+# PSN：gs2.ww.prod.dl.playstation.net、gst.prod.dl.playstation.net 等
+DOMAIN-SUFFIX,dl.playstation.net
+# 任天堂：atum / sun 等 *.hac.lp1.d4c.nintendo.net
+DOMAIN-SUFFIX,d4c.nintendo.net
