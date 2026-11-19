@@ -53,5 +53,7 @@ DOMAIN,content-origin.steampowered.com
 # 商店、登录仍按订阅规则走代理；只有游戏本体 / 补丁的下载 CDN 直连
 # PSN：gs2.ww.prod.dl.playstation.net、gst.prod.dl.playstation.net 等
 DOMAIN-SUFFIX,dl.playstation.net
+# PS5 系统更新：fsa01 / dsa01.ps5.update.playstation.net（只放行下载、不放行 np 登录）
+DOMAIN-SUFFIX,update.playstation.net
 # 任天堂：atum / sun 等 *.hac.lp1.d4c.nintendo.net
 DOMAIN-SUFFIX,d4c.nintendo.net
